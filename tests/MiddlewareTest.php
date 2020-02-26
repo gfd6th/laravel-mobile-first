@@ -48,7 +48,7 @@ class MiddlewareTest extends TestCase
         $response = $this->get('/', [
             'HTTP_USER_AGENT' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148',
         ]);
-        $this->assertContains('Redirecting to', $response->content());
+        $this->assertStringContainsString('Redirecting to', $response->content());
         $this->assertNotFalse($response->headers->get('location', false));
     }
 
@@ -57,7 +57,7 @@ class MiddlewareTest extends TestCase
         $response = $this->post('/', [
             'HTTP_USER_AGENT' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148',
         ]);
-        $this->assertNotContains('Redirecting to', $response->content());
+        $this->assertStringNotContainsString('Redirecting to', $response->content());
         $this->assertFalse($response->headers->get('location', false));
     }
 }

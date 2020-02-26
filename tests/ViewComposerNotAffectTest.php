@@ -17,7 +17,7 @@ class ViewComposerNotAffectTest extends TestCase
     public function testNormalRender()
     {
         $result = (string) $this->app['view']->make('test');
-        $this->assertContains('normal hello world', $result);
+        $this->assertStringContainsString('normal hello world', $result);
     }
 
     protected function getEnvironmentSetUp($application): void
